@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reelometer, el caso · Sergio Rodríguez Espinosa</title>
+<meta name="description" content="Cómo se hizo Reelometer, una app de Android que cuenta los vídeos cortos que ves, sin internet y sin cuentas. Decisiones, proceso con agentes de IA, números y lo que falta por probar.">
+<meta name="theme-color" content="#0f0e2a">
+<link rel="canonical" href="https://sergiore2007.github.io/proyectos/reelometer/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/big-shoulders-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/archivo-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/caso.css">
+<script>(function(d){d.classList.add('js');try{if(!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('io')}catch(e){}})(document.documentElement)</script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<header class="c-hero on-dark">
+  <nav class="c-top" aria-label="Navegación">
+    <a class="mono" href="/" aria-label="Inicio"><span aria-hidden="true">SRE</span></a>
+    <a class="back" href="/#proyectos">Proyectos</a>
+  </nav>
+
+  <div class="c-hero-main">
+    <p class="c-kicker">Caso de estudio · App de Android</p>
+    <h1 class="c-name">Reelometer</h1>
+    <p class="c-lead">Una app que cuenta los vídeos cortos que ves en TikTok, Reels y Shorts, y te pone el marcador delante. Sin internet y sin cuentas.</p>
+  </div>
+
+  <ul class="c-facts" data-p style="--n:4">
+    <li class="p-show" style="--i:0"><b>6 días</b> del primer commit a la 1.10.3</li>
+    <li class="p-show" style="--i:1"><b>329</b> commits</li>
+    <li class="p-show" style="--i:2"><b>1.028</b> tests</li>
+    <li class="p-show" style="--i:3"><b>0</b> permisos de internet</li>
+  </ul>
+
+  <figure class="phone hero-phone" data-r>
+    <img src="/assets/img/hoy-oscuro-540.webp" srcset="/assets/img/hoy-oscuro-360.webp 360w, /assets/img/hoy-oscuro-540.webp 540w" sizes="(min-width:900px) 300px, 70vw" width="360" height="750" alt="Pantalla Hoy de Reelometer en oscuro: marcador con los vídeos del día, con datos de ejemplo">
+  </figure>
+</header>
+
+<main id="contenido" tabindex="-1">
+
+<!-- EL PROBLEMA -->
+<section class="c-sec problema" aria-labelledby="h-prob">
+  <h2 class="sec-title" id="h-prob" data-r="wipe">El problema</h2>
+  <div class="c-cols">
+    <p class="big">Abres TikTok un momento y se te va la tarde. Y no sabes cuánto.</p>
+    <div class="c-text">
+      <p>Las apps de tiempo de pantalla te dicen cuántos minutos. No cuántos vídeos, ni de qué temas, ni de quién. Y casi todas las que lo cuentan te piden una cuenta y mandan tus datos a un servidor.</p>
+      <p>Yo quería lo contrario: un marcador que viva en el móvil y que no pueda mandar nada fuera. Que lo puedas comprobar, no solo creer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ HACE -->
+<section class="c-sec hace on-dark" aria-labelledby="h-hace">
+  <h2 class="sec-title" id="h-hace" data-r="wipe">Qué hace</h2>
+  <p class="sec-intro">Cuenta vídeos, tiempo, temas y creadores. Lo enseña de cuatro maneras.</p>
+  <div class="hace-grid">
+    <ul class="feat">
+      <li data-r><h3>Hoy</h3><p>Un marcador tipo panel de aeropuerto con los vídeos del día. Lo comparas con tu día medio a esta hora.</p></li>
+      <li data-r><h3>Estadísticas</h3><p>Semana, mes, año o desde siempre. Calendario de actividad como el de GitHub, hora punta, rachas y top 10 de creadores.</p></li>
+      <li data-r><h3>Resumen mensual</h3><p>Nueve diapositivas tipo Stories y un ticket de 1080 × 1920 para compartir.</p></li>
+      <li data-r><h3>Pasaporte</h3><p>Un juego al revés que premia ver menos. Mascota en pixel art, 23 sellos y un reto semanal.</p></li>
+    </ul>
+    <div class="phones" aria-label="Capturas de la app, con datos de ejemplo">
+      <figure class="phone" data-r="der"><img src="/assets/img/estadisticas-360.webp" width="360" height="750" loading="lazy" alt="Pantalla de Estadísticas de Reelometer: barras por día y calendario de actividad, con datos de ejemplo"></figure>
+      <figure class="phone" data-r="der"><img src="/assets/img/resumen-360.webp" width="360" height="750" loading="lazy" alt="Resumen mensual de Reelometer en formato Stories, con datos de ejemplo"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- EL RECORRIDO DE UN VÍDEO -->
+<section class="c-sec ruta" aria-labelledby="h-ruta">
+  <h2 class="sec-title" id="h-ruta" data-r="wipe">De TikTok al marcador</h2>
+  <p class="sec-intro">Esto le pasa a cada vídeo que ves. Baja y míralo encenderse.</p>
+
+  <ol class="route" data-p style="--n:5">
+    <li style="--i:0"><span class="dot" aria-hidden="true"></span><h3>Lo ves</h3><p>Pasas un vídeo en TikTok, Instagram o YouTube. La app no toca nada.</p></li>
+    <li style="--i:1"><span class="dot" aria-hidden="true"></span><h3>Lo oye el servicio de accesibilidad</h3><p>Android le avisa de lo que cambia en pantalla. Solo escucha 4 paquetes: las apps de vídeo corto y nada más.</p></li>
+    <li style="--i:2"><span class="dot" aria-hidden="true"></span><h3>Una regla decide si cuenta</h3><p>Si el vídeo estuvo 600 ms o más en pantalla, cuenta. Se apunta un máximo de 3 minutos por vídeo. Las reglas son datos, no código, y se calibran con volcados reales.</p></li>
+    <li style="--i:3"><span class="dot" aria-hidden="true"></span><h3>Se guarda en el móvil</h3><p>En una base de datos Room (SQLite) del propio teléfono. Sin red, porque la app no tiene permiso para usarla.</p></li>
+    <li style="--i:4"><span class="dot" aria-hidden="true"></span><h3>Salta el marcador</h3><p>Un dígito más en el panel, en el widget y en tus estadísticas.</p></li>
+  </ol>
+
+  <div class="try" id="try" hidden>
+    <h3 class="try-t">Pruébalo tú</h3>
+    <p class="try-p">Decide cuánto tiempo está el vídeo en pantalla y míralo pasar por la regla.</p>
+    <div class="try-ui">
+      <label for="ms">Tiempo en pantalla: <b id="ms-out">300 ms</b></label>
+      <input id="ms" type="range" min="0" max="1500" step="50" value="300" aria-describedby="try-res">
+      <div class="gauge" aria-hidden="true"><span class="gauge-fill" id="gauge"></span><span class="gauge-line"></span><span class="gauge-tag">600 ms</span></div>
+      <p class="try-res" id="try-res">300 ms: pasaste de largo. No cuenta.</p>
+      <div class="board" role="img" aria-label="Marcador" id="board-wrap"><span class="digit" id="d1">0</span><span class="digit" id="d2">0</span><span class="digit" id="d3">0</span></div>
+      <div class="btns"><button class="btn sun" type="button" id="watch">Ver este vídeo</button><button class="btn ghost" type="button" id="reset">A cero</button></div>
+      <p class="sr-only" role="status" id="try-live"></p>
+    </div>
+  </div>
+</section>
+
+<!-- DECISIONES TÉCNICAS -->
+<section class="c-sec deci on-dark" aria-labelledby="h-deci">
+  <h2 class="sec-title" id="h-deci" data-r="wipe">Decisiones</h2>
+  <p class="sec-intro">Las que importan, y por qué.</p>
+  <ul class="deci-grid">
+    <li class="d d1" data-r><h3>100 % local</h3><p>Ni cuentas ni servidores. Lo que cuenta la app se queda en tu móvil. Puedes exportar a CSV, importar sin duplicar y borrar todo.</p></li>
+    <li class="d d2" data-r><h3>Sin permiso INTERNET</h3><p>En los manifiestos aparece 0 veces y la integración continua lo comprueba en cada compilación. La única petición declarada es la de notificaciones.</p></li>
+    <li class="d d3" data-r><h3>Servicio de accesibilidad</h3><p>Es la única forma de ver qué vídeo hay en pantalla de otra app. También es lo que Google Play revisa con lupa, así que viene explicado y el envío rápido, que pulsa botones por ti, viene apagado.</p></li>
+    <li class="d d4" data-r><h3>Kotlin y Jetpack Compose</h3><p>Kotlin 2.4 y Compose para toda la interfaz. Navigation, DataStore, WorkManager y Glance para el widget, que tiene 6 tamaños.</p></li>
+    <li class="d d5" data-r><h3>Room</h3><p>SQLite con tres tablas: vídeos, compartidos y destinatarios. Importar el CSV real de un Pixel dio 798 vídeos, y repetirlo no duplicó nada.</p></li>
+    <li class="d d6" data-r><h3>5 idiomas</h3><p>Español, inglés, portugués de Brasil, francés e italiano. Se tradujeron con 20 ramas de agentes en paralelo y una guía en el repo.</p></li>
+  </ul>
+</section>
+
+<!-- PROCESO CON IA -->
+<section class="c-sec proceso" aria-labelledby="h-proc">
+  <h2 class="sec-title" id="h-proc" data-r="wipe">Cómo la dirigí</h2>
+  <p class="sec-intro">El código lo escribieron agentes de IA. Yo especifiqué, repartí, revisé y decidí. Estos son los números, sacados del repo.</p>
+
+  <ul class="nums">
+    <li data-r><b class="n" data-count="14" aria-hidden="true">14</b><span class="sr-only">14</span><span>encargos escritos, cada uno con contexto, normas y «cómo verificar»</span></li>
+    <li data-r><b class="n" data-count="329" aria-hidden="true">329</b><span class="sr-only">329</span><span>commits en 6 días, 97 solo el 7 de noviembre</span></li>
+    <li data-r><b class="n" data-count="20" aria-hidden="true">20</b><span class="sr-only">20</span><span>ramas de traducción fusionadas de una vez</span></li>
+    <li data-r><b class="n" data-count="1028" aria-hidden="true">1.028</b><span class="sr-only">1.028</span><span>tests, 0 fallos según el último informe</span></li>
+  </ul>
+
+  <div class="rev">
+    <h3 class="rev-t">Un escéptico por hallazgo</h3>
+    <p class="rev-p">Cuando unos revisores encuentran fallos, otro agente intenta tumbar cada uno. Si no puede, se arregla. Si puede, se descarta.</p>
+    <div class="bars" data-p style="--n:2">
+      <div class="bar-row"><p><b>TikTok, envío rápido:</b> 24 hallazgos, 19 confirmados, 5 refutados</p>
+        <div class="bar"><span class="seg ok p-grow" style="--i:0;flex:19"></span><span class="seg no p-grow" style="--i:1;flex:5"></span></div></div>
+      <div class="bar-row"><p><b>La web de la app:</b> 31 hallazgos, 20 confirmados, 11 descartados</p>
+        <div class="bar"><span class="seg ok p-grow" style="--i:0;flex:20"></span><span class="seg no p-grow" style="--i:1;flex:11"></span></div></div>
+    </div>
+  </div>
+
+  <div class="tandas">
+    <h3 class="rev-t">Lo que decidí yo</h3>
+    <ul class="decid">
+      <li data-r><b>Qué web.</b> Tres propuestas compitieron y un juez las puntuó (29, 33 y 29). Yo elegí quedarme con el feed de una, la calculadora de otra y el panel de salidas.</li>
+      <li data-r><b>Dos repos.</b> Pedí quitar de GitHub las cosas de Claude y los Markdown. Hay uno privado con todo y uno público limpio.</li>
+      <li data-r><b>Privacidad por defecto.</b> Lo sensible viene apagado. Los destinos de prueba, solo los que yo autorizo y con vídeos neutros.</li>
+      <li data-r><b>Cuándo publicar.</b> Cada versión la publico yo. La 1.10.2 se quedó sin publicar.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- RESULTADO -->
+<section class="c-sec result on-dark" aria-labelledby="h-res">
+  <h2 class="sec-title" id="h-res" data-r="wipe">Resultado</h2>
+  <p class="sec-intro">Publicada de verdad, y medida en un móvil real.</p>
+  <ul class="res-grid">
+    <li data-r><b>8</b><span>Releases públicas con APK, de la v1.4.4 a la v1.10.3. La APK pesa 18,4 MB.</span></li>
+    <li data-r><b>6 de 27 a 7 de 7</b><span>vídeos de Shorts contados antes y después de calibrar con un registro real.</span></li>
+    <li data-r><b>11 de 11</b><span>envíos rápidos en TikTok, entre 503 y 667 ms (mediana, 619 ms).</span></li>
+    <li data-r><b>0</b><span>peticiones a terceros en la web de la app, y cero cookies.</span></li>
+  </ul>
+</section>
+
+<!-- LO QUE FALTA -->
+<section class="c-sec falta" aria-labelledby="h-falta">
+  <h2 class="sec-title" id="h-falta" data-r="wipe">Lo que falta</h2>
+  <p class="sec-intro">Lo que no está probado o no funciona todavía. Mejor que lo leas aquí.</p>
+  <p class="stamp-r" data-r aria-hidden="true"><span>Sin comprobar</span></p>
+  <ul class="falta-list">
+    <li><b>Un solo móvil.</b> Todo se midió en un Pixel 10a con Android 17. Otros móviles y versiones, sin probar.</li>
+    <li><b>TalkBack.</b> Nunca lo he oído en un móvil. El repaso de accesibilidad es de lectura de código.</li>
+    <li><b>Traducciones.</b> Ningún nativo las ha leído. Las palabras de TikTok en unos 24 idiomas salieron de memoria de un agente y se tratan como respaldo.</li>
+    <li><b>Fallo conocido.</b> En TikTok, las burbujas del envío rápido se ven encima de los comentarios. Sin arreglar.</li>
+    <li><b>Pasaporte y recorrido guiado.</b> Sin revisión visual completa en pantalla.</li>
+    <li><b>No está en Google Play.</b> Se instala con la APK y el «ajuste restringido» de Android.</li>
+    <li><b>Depende de apps ajenas.</b> Si TikTok, Instagram o YouTube cambian algo, la detección puede romperse. El creador de un Short no se puede leer.</li>
+    <li><b>Usuarios.</b> No sé cuántos hay, porque la app no tiene analítica a propósito.</li>
+  </ul>
+</section>
+
+<!-- ENLACES -->
+<section class="c-sec links on-dark" aria-labelledby="h-links">
+  <h2 class="sec-title" id="h-links" data-r="wipe">Míralo tú</h2>
+  <p class="sec-intro">El código es de acceso público pero con todos los derechos reservados: se lee, no se reutiliza.</p>
+  <div class="btns links-row">
+    <a class="btn sun" href="https://sergiore2007.github.io/reelometer/">La web de la app</a>
+    <a class="btn ghost" href="https://github.com/SergioRE2007/reelometer">El código</a>
+    <a class="btn ghost" href="https://github.com/SergioRE2007/reelometer/releases/latest">Descargar la APK</a>
+    <a class="btn ghost" href="/#proyectos">Volver a los proyectos</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <p>Sergio Rodríguez Espinosa, Málaga, 2026.</p>
+  <p>Hecha con agentes de IA y revisada por mí. Sin cookies ni rastreadores; las fuentes se sirven desde aquí. <a href="/">Portada</a></p>
+</footer>
+
+<script src="/js/base.js" defer></script>
+<script src="/js/caso.js" defer></script>
+</body>
+</html>

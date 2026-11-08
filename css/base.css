@@ -1,0 +1,116 @@
+/* base.css · común a todas las páginas del sitio (portada, casos, 404).
+   Tokens, fuentes, reinicio, botones, documentos y utilidades de animación.
+   Lo propio de cada página va en su CSS. */
+
+@font-face{font-family:"Big Shoulders Display";src:url(/fonts/big-shoulders-display-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Archivo";src:url(/fonts/archivo-latin-wght-normal.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"IBM Plex Mono";src:url(/fonts/ibm-plex-mono-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+
+/* Progreso de cada bloque animado. Vale 1 por defecto: sin JS y sin soporte, todo se ve «escrito». */
+@property --p{syntax:"<number>";inherits:true;initial-value:1}
+
+:root{
+  --paper:#f2f0fa;--ink:#0f0e2a;--cobalt:#2a35f0;--sun:#ffd23f;--pink:#ff6fb0;--mint:#6ee0b0;--red:#c8102e;--white:#fff;
+  --disp:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --gut:16px;--rule:3px;--max:1440px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:light;
+}
+@media (min-width:900px){:root{--gut:48px}}
+
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+html{overflow-x:clip;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{background:var(--paper);color:var(--ink);font:400 1.0625rem/1.5 var(--body);overflow-x:clip;min-height:100svh}
+img,svg{display:block;max-width:100%;height:auto}
+a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:2px}
+button{font:inherit;color:inherit}
+/* :where() deja el reinicio en 0,1,0: el padding propio de cada lista con clase gana por orden */
+:where(ul,ol)[class]{list-style:none;padding:0}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+
+/* Foco: siempre visible. Sobre fondos oscuros (.on-dark) el contorno pasa a blanco. */
+:focus-visible{outline:4px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 7px var(--sun)}
+.on-dark :focus-visible{outline-color:var(--white);box-shadow:0 0 0 7px var(--ink)}
+
+.skip{position:absolute;left:8px;top:-80px;z-index:50;background:var(--ink);color:var(--white);padding:12px 16px;font-weight:700;text-decoration:none}
+.skip:focus{top:8px}
+[hidden]{display:none!important}
+.sr-only{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.js [data-nojs]{display:none!important}
+
+/* Titulares */
+.disp{font-family:var(--disp);font-weight:900;text-transform:uppercase;line-height:.82;letter-spacing:-.005em}
+.sec-title{font:900 clamp(3rem,16vw,15rem)/.82 var(--disp);text-transform:uppercase;padding:56px var(--gut) 12px;letter-spacing:-.005em}
+.sec-intro{padding:0 var(--gut);max-width:calc(44ch + 2 * var(--gut));font-size:1.15rem;margin-bottom:32px}
+@media (min-width:900px){.sec-title{font-size:min(14vw,15rem);padding-top:96px}.sec-intro{font-size:1.3rem}}
+
+/* Botones: bloque plano, borde de 3 px, sombra dura al pasar por encima */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;font:700 1rem/1.15 var(--body);padding:12px 20px;border:var(--rule) solid var(--ink);background:var(--ink);color:var(--white);text-decoration:none;cursor:pointer;border-radius:0;transition:transform .15s,box-shadow .15s;text-align:center}
+.btn.ghost{background:transparent;color:inherit;border-color:currentColor}
+.btn.sun{background:var(--sun);color:var(--ink);border-color:var(--sun)}
+.btn[disabled],.btn[aria-disabled="true"]{cursor:default;opacity:.55}
+@media (hover:hover){.btn:not([disabled],[aria-disabled="true"]):hover{transform:translate(-3px,-3px);box-shadow:4px 4px 0 currentColor}}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+
+/* Documento: hoja de máquina (Markdown, chat, tareas). Solo aquí se usa la mono. */
+.doc{background:var(--white);color:var(--ink);border:var(--rule) solid var(--ink);box-shadow:6px 6px 0 var(--ink);font:400 .9rem/1.55 var(--mono);max-width:34rem}
+.doc-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:var(--rule) solid var(--ink);padding:8px 12px;font:400 .85rem/1.3 var(--mono)}
+.doc-tag{font:700 .8rem/1 var(--body);background:var(--ink);color:var(--white);padding:5px 8px}
+.doc-body{padding:12px 14px 14px}
+.doc mark{background:var(--sun);color:var(--ink);padding:0 .2em;font-weight:inherit;white-space:nowrap}
+.doc-bar > span:first-child{min-width:0;overflow-wrap:anywhere}
+.on-dark .doc{box-shadow:6px 6px 0 var(--sun)}
+
+/* ---------- Utilidades de animación ----------
+   [data-r]          el bloque entra al bajar: sube (por defecto), "izq" o "der" (desde el lado), "wipe" (sale de una ranura)
+   [data-p]          su --p va de 0 a 1 mientras entra; los hijos lo usan:
+     .p-write        se escribe de izquierda a derecha (clip-path)
+     .p-grow         crece en horizontal desde la izquierda (scaleX)
+     .p-show         aparece (opacidad)
+     con --n (en el padre) y --i (en el hijo) se escalonan: --k = clamp(0, p·n − i, 1)
+   Sin JS, sin soporte o con movimiento reducido: todo quieto y visible. */
+[data-p] *{--k:clamp(0,calc(var(--p) * var(--n,1) - var(--i,0)),1)}
+.p-write{clip-path:inset(0 calc((1 - var(--k)) * 100%) 0 0)}
+.p-grow{transform-origin:0 50%;transform:scaleX(var(--k))}
+.p-show{opacity:var(--k)}
+
+@media (prefers-reduced-motion:no-preference){
+  @supports ((animation-timeline:view()) and (animation-range:entry)){
+    @keyframes p-fill{from{--p:0}to{--p:1}}
+    @keyframes r-up{from{opacity:0;transform:translateY(56px)}}
+    @keyframes r-izq{from{transform:translateX(-45vw)}}
+    @keyframes r-der{from{transform:translateX(45vw)}}
+    @keyframes r-wipe{from{clip-path:inset(-40% -5% 140% -5%);transform:translateY(.35em)}to{clip-path:inset(-40% -5% -20% -5%);transform:none}}
+    .js [data-p]{animation:p-fill linear both;animation-timeline:view();animation-range:entry 15% entry 100%}
+    .js [data-r]{animation:r-up linear backwards;animation-timeline:view();animation-range:entry 0% entry 75%}
+    .js [data-r="izq"]{animation-name:r-izq;animation-range:entry 0% cover 40%}
+    .js [data-r="der"]{animation-name:r-der;animation-range:entry 0% cover 40%}
+    .js [data-r="wipe"]{animation-name:r-wipe;animation-range:entry 5% entry 70%}
+  }
+  /* Respaldo: html.io lo pone el script de <head> si falta animation-timeline; base.js añade .in con IntersectionObserver */
+  html.js.io [data-p]{--p:0;transition:--p 1.2s var(--ease)}
+  html.js.io [data-p].in{--p:1}
+  html.js.io [data-r]{opacity:0;transform:translateY(56px);transition:opacity .6s var(--ease),transform .8s var(--ease)}
+  html.js.io [data-r="izq"]{opacity:1;transform:translateX(-45vw)}
+  html.js.io [data-r="der"]{opacity:1;transform:translateX(45vw)}
+  html.js.io [data-r="wipe"]{opacity:1;transform:translateY(.35em);clip-path:inset(-40% -5% 140% -5%);transition:clip-path .8s var(--ease),transform .8s var(--ease)}
+  html.js.io [data-r].in{opacity:1;transform:none}
+  html.js.io [data-r="wipe"].in{clip-path:inset(-40% -5% -20% -5%)}
+}
+
+/* Al imprimir, todo quieto y a la vista */
+@media print{
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  [data-r],.word{opacity:1!important;transform:none!important;clip-path:none!important}
+  [data-p]{--p:1!important}
+}
+
+/* Pie común */
+.foot{background:var(--ink);color:var(--paper);padding:28px var(--gut) 36px;font-size:.95rem;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.foot a{color:var(--sun)}
+.foot p{max-width:60ch}

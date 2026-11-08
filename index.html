@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sergio Rodríguez Espinosa · DAM y agentes de IA</title>
+<meta name="description" content="Estudiante de 2.º de DAM en Málaga que desarrolla con agentes de IA: especifica, reparte, revisa y decide. Busco prácticas para el curso 2026/27, en Málaga o en remoto.">
+<meta name="theme-color" content="#0f0e2a">
+<link rel="canonical" href="https://sergiore2007.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Sergio Rodríguez Espinosa">
+<meta property="og:title" content="Sergio Rodríguez Espinosa · DAM y agentes de IA">
+<meta property="og:description" content="Sé programar y sé dirigir a la IA para que programe bien. Te enseño cómo, con números. Busco prácticas 2026/27.">
+<meta property="og:url" content="https://sergiore2007.github.io/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/big-shoulders-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/archivo-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/home.css">
+<script>(function(d){d.classList.add('js');try{if(!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')&&!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('io')}catch(e){}})(document.documentElement)</script>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<header class="hero" id="inicio">
+  <nav class="top" aria-label="Secciones">
+    <a class="mono" href="/" aria-label="Inicio"><span aria-hidden="true">SRE</span></a>
+    <ul class="top-links">
+      <li><a href="#metodo">Método</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <p class="stamp"><span>Busco prácticas</span> <b>2026/27</b> <span>Málaga o en remoto</span></p>
+
+  <div class="hero-main">
+    <h1 class="hero-name"><span class="l l1">Sergio</span> <span class="l l2">Rodríguez</span> <span class="l l3">Espinosa</span></h1>
+    <p class="hero-role">Estudiante de 2.º de DAM en el CPIFP Alan Turing, en Málaga. Desarrollo con agentes de IA.</p>
+  </div>
+
+  <div class="hero-foot">
+    <p class="hero-line">Sé programar y sé dirigir a la IA para que programe bien. Te enseño cómo, con números.</p>
+    <div class="btns">
+      <button class="btn" type="button" data-copy="copy-hero">Copiar el correo</button>
+      <a class="btn" href="#contacto" data-nojs>Ver el correo</a>
+      <a class="btn ghost" href="/assets/CV_Sergio_Rodriguez_Espinosa.pdf">CV en PDF</a>
+    </div>
+    <p class="copy-msg" id="copy-hero" role="status"></p>
+  </div>
+</header>
+
+<div class="band" aria-hidden="true"><div class="band-in"><span>DAM + agentes de IA</span><span>DAM + agentes de IA</span><span>DAM + agentes de IA</span><span>DAM + agentes de IA</span><span>DAM + agentes de IA</span></div></div>
+
+<main id="contenido" tabindex="-1">
+
+<section class="metodo" id="metodo" aria-labelledby="h-metodo">
+  <h2 class="sec-title" id="h-metodo" data-r="wipe">Cómo trabajo</h2>
+  <p class="sec-intro">Cuatro pasos, siempre en el mismo orden. Los números de los pasos 2, 3 y 4 son de Reelometer, mi app de Android, y salen de su repositorio.</p>
+
+  <ol class="steps stack">
+    <!-- 1 · HABLAR -->
+    <li class="step s1" aria-labelledby="h-s1">
+      <div class="step-in">
+        <span class="n" aria-hidden="true">1</span>
+        <p class="word" aria-hidden="true">Hablar</p>
+        <div class="step-txt">
+          <h3 id="h-s1"><span class="sr-only">Paso 1, hablar: </span>Conversación y pautas</h3>
+          <p>Antes de que exista una línea de código, le cuento la idea a la IA. Discutimos, la ajustamos y fijamos las normas que no se tocan.</p>
+          <p class="proof"><b>2–4 h</b> de charla antes del primer código. Es mi costumbre, no una medición.</p>
+        </div>
+        <figure class="doc chat-doc" data-p>
+          <figcaption class="doc-bar"><span>charla-reelometer</span><span class="doc-tag">Resumido</span></figcaption>
+          <ol class="chat doc-body" style="--n:4.6">
+            <li class="p-write" style="--i:0"><b class="who">yo</b><span>Quiero una app que cuente los vídeos cortos que veo en el móvil.</span></li>
+            <li class="p-write" style="--i:1"><b class="who ia">ia</b><span>¿Los datos salen del móvil?</span></li>
+            <li class="p-write" style="--i:2"><b class="who">yo</b><span>No. Ni cuentas ni servidores. Nada sale del móvil.</span></li>
+            <li class="p-write" style="--i:3"><b class="who ia">ia</b><span>Entonces la app no pide el permiso INTERNET. Lo apunto como norma.</span></li>
+          </ol>
+          <p class="doc-foot p-show" style="--n:4.6;--i:3.6">Y se cumple: el permiso INTERNET aparece <mark>0 veces</mark> en los manifiestos, y la integración continua lo comprueba en cada compilación.</p>
+        </figure>
+      </div>
+    </li>
+
+    <!-- 2 · ESCRIBIR -->
+    <li class="step s2" aria-labelledby="h-s2">
+      <div class="step-in">
+        <span class="n" aria-hidden="true">2</span>
+        <p class="word" aria-hidden="true">Escribir</p>
+        <div class="step-txt">
+          <h3 id="h-s2"><span class="sr-only">Paso 2, escribir: </span>Documentos antes del código</h3>
+          <p>Todo acaba en una carpeta de Markdown: qué hace la app, cómo se ve, en qué orden se construye y qué reglas sigue el agente. Se llama desarrollo guiado por especificaciones. Yo lo llamo no improvisar.</p>
+          <p class="proof"><b>14</b> encargos escritos para Reelometer, cada uno con su «cómo verificar»</p>
+        </div>
+        <div class="doc files" data-tabs>
+          <div class="files-tabs" role="tablist" aria-label="Tres documentos del método">
+            <button type="button" role="tab" id="t-tareas" aria-controls="f-tareas" aria-selected="true">INFORME_FINAL.md</button>
+            <button type="button" role="tab" id="t-encargo" aria-controls="f-encargo" aria-selected="false" tabindex="-1">ENCARGO.md</button>
+            <button type="button" role="tab" id="t-claude" aria-controls="f-claude" aria-selected="false" tabindex="-1">CLAUDE.md</button>
+          </div>
+          <div class="files-body">
+            <section class="file" id="f-tareas" role="tabpanel" aria-labelledby="t-tareas" tabindex="0" data-p>
+              <p class="doc-bar"><span>reelometer/docs/INFORME_FINAL.md</span><span class="doc-tag">Resumido</span></p>
+              <div class="doc-body">
+                <p class="md-h">## Web 1.0 (8 nov 2026)</p>
+                <ul class="tasks" style="--n:6.4">
+                  <li style="--i:0"><span class="cb" aria-hidden="true"><i class="o">[ ]</i><i class="x">[x]</i></span><span class="tx">Fase 0: base común, tokens y fuentes</span></li>
+                  <li style="--i:1"><span class="cb" aria-hidden="true"><i class="o">[ ]</i><i class="x">[x]</i></span><span class="tx">Fase 1: 3 propuestas y 1 juez que las puntúa</span></li>
+                  <li style="--i:2"><span class="cb" aria-hidden="true"><i class="o">[ ]</i><i class="x">[x]</i></span><span class="tx">Fase 2: 6 agentes de construcción</span></li>
+                  <li style="--i:3"><span class="cb" aria-hidden="true"><i class="o">[ ]</i><i class="x">[x]</i></span><span class="tx">Fase 2b: 3 agentes de fidelidad, porque lo pedí yo</span></li>
+                  <li style="--i:4"><span class="cb" aria-hidden="true"><i class="o">[ ]</i><i class="x">[x]</i></span><span class="tx">Fase 3: 5 revisores y un escéptico por hallazgo</span></li>
+                  <li style="--i:5"><span class="cb" aria-hidden="true"><i class="o">[ ]</i><i class="x">[x]</i></span><span class="tx">Publicar, con mi visto bueno</span></li>
+                </ul>
+                <p class="sr-only">Las seis tareas están hechas.</p>
+              </div>
+            </section>
+            <section class="file" id="f-encargo" role="tabpanel" aria-labelledby="t-encargo" tabindex="0">
+              <p class="doc-bar"><span>reelometer/docs/ENCARGO.md</span><span class="doc-tag">Resumido</span></p>
+              <div class="doc-body">
+                <p class="md-h"># Encargo, 3 nov 2026</p>
+                <p class="md-h">## Pantallas</p>
+                <p class="md-h">## Dirección de diseño</p>
+                <p class="md-h">## Textos</p>
+                <p class="md-h">## Robustez</p>
+                <p class="md-h">## Cómo verificar</p>
+                <p>- Con capturas reales de cada pantalla.</p>
+                <p>- Sin decir que algo funciona si no lo has comprobado.</p>
+              </div>
+            </section>
+            <section class="file" id="f-claude" role="tabpanel" aria-labelledby="t-claude" tabindex="0">
+              <p class="doc-bar"><span>portfolio/CLAUDE.md</span><span class="doc-tag">Extracto</span></p>
+              <div class="doc-body">
+                <p class="md-h">## Preferencias del usuario […]</p>
+                <p>- Trabajo autónomo: pregunta solo lo que solo él puede decidir; decide lo demás y explícalo al final. Todo en español.</p>
+                <p>- Móvil primero: que se vea muy bien en el móvil.</p>
+                <p>- Informe final honesto (comprobado / sin comprobar), también escrito en el repo.</p>
+                <p class="md-h">## Normas que no se negocian</p>
+                <p>- Cifras con fuente; nada a medias vendido como terminado; […]</p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <!-- 3 · REPARTIR -->
+    <li class="step s3 on-dark" aria-labelledby="h-s3">
+      <div class="step-in">
+        <span class="n" aria-hidden="true">3</span>
+        <p class="word" aria-hidden="true">Repartir</p>
+        <div class="step-txt">
+          <h3 id="h-s3"><span class="sr-only">Paso 3, repartir: </span>Agentes en paralelo</h3>
+          <p>Parto el trabajo en zonas que no se pisan. Cada agente va en su rama y en su worktree. Yo coordino, fusiono y miro lo que sale.</p>
+          <ul class="proofs">
+            <li class="proof"><b>7</b> subagentes a la vez para la versión 1.10.0</li>
+            <li class="proof"><b>38+</b> ramas de agentes en todo el proyecto</li>
+            <li class="proof"><b>6</b> agentes de construcción para su web</li>
+          </ul>
+        </div>
+        <div class="rig">
+          <svg class="schema" data-p viewBox="0 0 360 170" role="img" aria-label="Esquema: una idea se reparte en cuatro ramas, cada rama pasa por los escépticos, una se queda fuera y las otras tres llegan al sí.">
+            <g class="wires" style="--n:3">
+              <path class="w" style="--i:0" pathLength="1" d="M30 85 C 70 85, 70 25, 116 25"/>
+              <path class="w" style="--i:0" pathLength="1" d="M30 85 C 70 85, 70 65, 116 65"/>
+              <path class="w" style="--i:0" pathLength="1" d="M30 85 C 70 85, 70 105, 116 105"/>
+              <path class="w" style="--i:0" pathLength="1" d="M30 85 C 70 85, 70 145, 116 145"/>
+              <path class="w" style="--i:1" pathLength="1" d="M116 25 H 226"/>
+              <path class="w" style="--i:1" pathLength="1" d="M116 65 H 226"/>
+              <path class="w" style="--i:1" pathLength="1" d="M116 105 H 226"/>
+              <path class="w" style="--i:1" pathLength="1" d="M116 145 H 226"/>
+              <path class="w" style="--i:2" pathLength="1" d="M226 65 C 266 65, 266 85, 300 85"/>
+              <path class="w" style="--i:2" pathLength="1" d="M226 105 C 266 105, 266 85, 300 85"/>
+              <path class="w" style="--i:2" pathLength="1" d="M226 145 C 270 145, 266 85, 300 85"/>
+            </g>
+            <g class="nodes" style="--n:3">
+              <circle class="p-show" style="--i:0" cx="30" cy="85" r="9"/>
+              <g class="p-show" style="--i:.8"><circle cx="116" cy="25" r="5"/><circle cx="116" cy="65" r="5"/><circle cx="116" cy="105" r="5"/><circle cx="116" cy="145" r="5"/></g>
+              <g class="p-show" style="--i:1.8"><rect x="221" y="60" width="10" height="10"/><rect x="221" y="100" width="10" height="10"/><rect x="221" y="140" width="10" height="10"/></g>
+              <path class="p-show kill" style="--i:1.8" d="M219 18 L233 32 M233 18 L219 32"/>
+              <g class="p-show yes" style="--i:2"><rect x="300" y="70" width="40" height="30"/><text x="320" y="91" text-anchor="middle">sí</text></g>
+            </g>
+            <g class="lbl">
+              <text x="30" y="114" text-anchor="middle">idea</text>
+              <text x="116" y="166" text-anchor="middle">ramas</text>
+              <text x="226" y="166" text-anchor="middle">escépticos</text>
+              <text x="320" y="118" text-anchor="middle">decido</text>
+            </g>
+          </svg>
+          <div class="lanes" data-p style="--n:1.6">
+            <p class="lanes-t">Versión 1.10.0: 7 subagentes, cada uno en su worktree</p>
+            <ol class="lane-list" aria-hidden="true">
+              <li style="--i:0"><span>rama 1</span><i class="p-grow"></i></li>
+              <li style="--i:.1"><span>rama 2</span><i class="p-grow"></i></li>
+              <li style="--i:.2"><span>rama 3</span><i class="p-grow"></i></li>
+              <li style="--i:.3"><span>rama 4</span><i class="p-grow"></i></li>
+              <li style="--i:.4"><span>rama 5</span><i class="p-grow"></i></li>
+              <li style="--i:.5"><span>rama 6</span><i class="p-grow"></i></li>
+              <li style="--i:.6"><span>rama 7</span><i class="p-grow"></i></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <!-- 4 · REVISAR -->
+    <li class="step s4" aria-labelledby="h-s4">
+      <div class="step-in">
+        <span class="n" aria-hidden="true">4</span>
+        <p class="word" aria-hidden="true">Revisar</p>
+        <div class="step-txt">
+          <h3 id="h-s4"><span class="sr-only">Paso 4, revisar: </span>Una persona en el bucle</h3>
+          <p>Nada se queda porque sí. Unos revisores buscan fallos y un escéptico intenta tumbar cada uno antes de arreglarlo. Después decido yo.</p>
+          <blockquote class="quote"><p>«Esto no me mola.» «Aquí hay un error.» Eso lo digo yo.</p></blockquote>
+          <p class="seal" data-p aria-hidden="true"><span>Revisado por una persona</span></p>
+        </div>
+        <div class="mesa" id="mesa" data-state="final">
+          <p class="mesa-head"><b>31</b> hallazgos de 5 revisores en la web de Reelometer</p>
+          <ol class="mesa-dots" aria-hidden="true">
+            <li class="ok"></li><li class="ok"></li><li class="no"></li><li class="ok"></li><li class="ok"></li><li class="no"></li><li class="no"></li><li class="ok"></li>
+            <li class="ok"></li><li class="no"></li><li class="ok"></li><li class="ok"></li><li class="no"></li><li class="ok"></li><li class="no"></li><li class="ok"></li>
+            <li class="no"></li><li class="ok"></li><li class="no"></li><li class="ok"></li><li class="ok"></li><li class="no"></li><li class="ok"></li><li class="ok"></li>
+            <li class="no"></li><li class="ok"></li><li class="ok"></li><li class="no"></li><li class="ok"></li><li class="ok"></li><li class="ok"></li>
+          </ol>
+          <p class="mesa-key" aria-hidden="true"><span><i class="ok"></i>confirmado</span><span><i class="no"></i>descartado</span></p>
+          <div class="mesa-bar" aria-hidden="true"><i class="b-ok"></i><i class="b-no"></i></div>
+          <p class="mesa-out" role="status"><b>20</b> confirmados y arreglados. <b>11</b> descartados.</p>
+          <div class="btns mesa-btns">
+            <button class="btn" type="button" data-mesa="run" hidden>Pasar los escépticos</button>
+            <button class="btn" type="button" data-mesa="yes" hidden>Sí, fusionar</button>
+            <button class="btn ghost" type="button" data-mesa="no" hidden>No, repetir</button>
+          </div>
+          <p class="mesa-src">Fuente: el informe de la web de Reelometer, 8 nov 2026.</p>
+        </div>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section class="reel on-dark" id="proyectos" aria-labelledby="h-reel">
+  <h2 class="sec-title" id="h-reel" data-r="wipe">Reelometer</h2>
+  <p class="sec-intro">Mi app de Android, en Kotlin y Jetpack Compose. Cuenta los vídeos cortos que ves en TikTok, Instagram Reels y YouTube Shorts y te pone el marcador delante. Todo se queda en el móvil: ni siquiera pide permiso para usar Internet.</p>
+
+  <div class="phones" data-p aria-label="Tres pantallas de Reelometer con datos de ejemplo" role="group">
+    <figure class="phone ph1">
+      <img src="/assets/img/hoy-oscuro-360.webp" srcset="/assets/img/hoy-oscuro-360.webp 360w, /assets/img/hoy-oscuro-540.webp 540w" sizes="(min-width:900px) 260px, 34vw" width="360" height="750" loading="lazy" decoding="async" alt="Pantalla Hoy: un marcador de aeropuerto con 028 vídeos y 9 minutos de pantalla.">
+    </figure>
+    <figure class="phone ph2">
+      <img src="/assets/img/estadisticas-360.webp" srcset="/assets/img/estadisticas-360.webp 360w, /assets/img/estadisticas-540.webp 540w" sizes="(min-width:900px) 260px, 34vw" width="360" height="750" loading="lazy" decoding="async" alt="Pantalla Estadísticas: 1.203 vídeos en la semana, con una barra por día.">
+    </figure>
+    <figure class="phone ph3">
+      <img src="/assets/img/resumen-360.webp" srcset="/assets/img/resumen-360.webp 360w, /assets/img/resumen-540.webp 540w" sizes="(min-width:900px) 260px, 34vw" width="360" height="750" loading="lazy" decoding="async" alt="Pantalla Resumen: «Tu octubre, contado», con 6.909 vídeos el mes pasado.">
+    </figure>
+  </div>
+  <p class="phones-note">Capturas con datos de ejemplo.</p>
+
+  <ul class="figs">
+    <li class="fig" data-r="izq"><b class="big" data-count="66311" aria-hidden="true">66.311</b><span><span class="sr-only">66.311 </span>líneas de Kotlin, 19.659 de ellas de tests</span></li>
+    <li class="fig" data-r="der"><b class="big" data-count="1028" aria-hidden="true">1.028</b><span><span class="sr-only">1.028 </span>tests automáticos</span></li>
+    <li class="fig" data-r="izq"><b class="big" data-count="329" aria-hidden="true">329</b><span><span class="sr-only">329 </span>commits en 6 días, del 3 al 8 de noviembre de 2026</span></li>
+    <li class="fig" data-r="der"><b class="big" aria-hidden="true">5</b><span><span class="sr-only">5 </span>idiomas: español, inglés, portugués, francés e italiano</span></li>
+  </ul>
+
+  <div class="reel-txt">
+    <p>El código lo escribieron agentes. La especificación, el reparto, la revisión y cada decisión son míos.</p>
+    <p>Versión 1.10.3, publicada con su APK. No está en Google Play todavía y solo la he probado en un móvil. Te lo digo yo antes de que lo preguntes.</p>
+  </div>
+  <div class="btns reel-links">
+    <a class="btn sun" href="/proyectos/reelometer/">Cómo la hice, paso a paso</a>
+    <a class="btn ghost" href="https://sergiore2007.github.io/reelometer/">La web de la app</a>
+    <a class="btn ghost" href="https://github.com/SergioRE2007/reelometer">El código</a>
+    <a class="btn ghost" href="https://github.com/SergioRE2007/reelometer/releases/latest">Descargar la APK</a>
+  </div>
+</section>
+
+<section class="games" aria-labelledby="h-games">
+  <h2 class="sec-title" id="h-games" data-r="wipe">Juegos</h2>
+  <p class="sec-intro">Tres juegos, cada uno en un punto distinto. Te digo cuál está terminado y cuál no.</p>
+
+  <article class="game g-rng on-dark" aria-labelledby="h-rng">
+    <h3 class="game-name" id="h-rng" data-r="der">RNG: Sword Breaker</h3>
+    <div class="game-in">
+      <p class="status">Publicado en Roblox</p>
+      <p>Rompes objetos de tu parcela a espadazos y te tocan armas cada vez más raras. Lo hicimos en equipo de tres, cada uno con su agente y su zona de ficheros.</p>
+      <ul class="facts">
+        <li><b>62.781</b> líneas de Luau</li>
+        <li><b>290</b> PR fusionadas en 18 días</li>
+        <li><b>3.650</b> visitas, más o menos, a 8 nov 2026</li>
+      </ul>
+      <p>Lo mío: las armas, las mazmorras en grupo, el comercio entre jugadores, el guardado con candado contra duplicados, la traducción al inglés y un simulador que equilibra la economía.</p>
+      <div class="btns"><a class="btn" href="https://www.roblox.com/games/92024272447404/RNG-Sword-Breaker">Jugar en Roblox</a></div>
+    </div>
+  </article>
+
+  <article class="game g-horror" aria-labelledby="h-horror">
+    <h3 class="game-name" id="h-horror" data-r="izq">Horror</h3>
+    <div class="game-in">
+      <p class="status">En desarrollo, con nombre provisional</p>
+      <p>Terror cooperativo para Roblox, de 1 a 4 jugadores: de día exploras el bosque y de noche defiendes la casa. Es donde mejor se ve el método: diseño, plan técnico en 13 pasos, lista de tareas con estados y un documento por sistema.</p>
+      <ul class="facts">
+        <li><b>61.560</b> líneas de Luau</li>
+        <li><b>11.011</b> líneas de pruebas</li>
+        <li><b>37</b> documentos, uno por sistema</li>
+      </ul>
+      <p>Todavía no se ha jugado una partida entera de principio a fin. Cuando se pueda, lo enlazo.</p>
+    </div>
+  </article>
+
+  <article class="game g-dt" aria-labelledby="h-dt">
+    <h3 class="game-name" id="h-dt" data-r="der">Dungeon Tide</h3>
+    <div class="game-in">
+      <p class="status">Jugable en el navegador, parado desde marzo de 2026</p>
+      <p>Pixel art con cuatro modos: sandbox, oleadas, bullet hell y mazmorra. JavaScript sin frameworks, Canvas y controles táctiles para el móvil.</p>
+      <ul class="facts">
+        <li><b>14.011</b> líneas de JavaScript</li>
+        <li><b>4</b> modos de juego</li>
+        <li><b>16</b> días, en marzo de 2026</li>
+      </ul>
+      <p>Fue mi primer proyecto grande con un agente, sin especificación ni tests: iba añadiendo ideas según se me ocurrían. De ahí aprendí a escribir antes de programar. Los gráficos son de un tileset de 0x72, no míos.</p>
+      <div class="btns">
+        <a class="btn" href="https://sergiore2007.github.io/Dungeon-Tide/">Jugar</a>
+        <a class="btn ghost" href="https://github.com/SergioRE2007/Dungeon-Tide">El código</a>
+      </div>
+    </div>
+    <figure class="shot" data-p>
+      <img src="/assets/img/dungeon-tide-640.webp" srcset="/assets/img/dungeon-tide-640.webp 640w, /assets/img/dungeon-tide-1100.webp 1100w" sizes="(min-width:900px) 46vw, calc(100vw - 32px)" width="640" height="400" loading="lazy" decoding="async" alt="Menú de Dungeon Tide: cuatro modos de juego sobre un fondo de mazmorra en pixel art.">
+    </figure>
+  </article>
+</section>
+
+<section class="path" aria-labelledby="h-path">
+  <h2 class="sec-title" id="h-path" data-r="wipe">Trayectoria</h2>
+  <ol class="tl">
+    <li>
+      <p class="tl-when" data-r="izq">2025–27</p>
+      <div class="tl-what">
+        <h3>Técnico Superior en DAM</h3>
+        <p>CPIFP Alan Turing, Málaga. Ahora en 2.º; termino en junio de 2027.</p>
+      </div>
+    </li>
+    <li>
+      <p class="tl-when" data-r="izq">2026</p>
+      <div class="tl-what">
+        <h3>Prácticas de desarrollo web en Sweet Code Chef</h3>
+        <p>En remoto, de abril a mayo. Integraciones en PHP para AutomatorWP, un plugin de WordPress, con Git sobre GitLab y un equipo repartido.</p>
+      </div>
+    </li>
+    <li>
+      <p class="tl-when" data-r="izq">2025</p>
+      <div class="tl-what">
+        <h3>Erasmus+ en Perugia, Italia</h3>
+        <p>Técnico informático en prácticas en CS Informatica, de marzo a junio: diagnosticar, reparar y atender a clientes en otro idioma.</p>
+      </div>
+    </li>
+    <li>
+      <p class="tl-when" data-r="izq">2023–25</p>
+      <div class="tl-what">
+        <h3>Técnico en SMR</h3>
+        <p>IES Gerald Brenan, Málaga.</p>
+      </div>
+    </li>
+  </ol>
+
+  <h2 class="sec-title" id="h-tools" data-r="wipe">Herramientas</h2>
+  <div class="tools">
+    <div class="tools-col">
+      <h3>Lo de DAM</h3>
+      <ul class="words">
+        <li>Java</li><li>Kotlin</li><li>SQL</li><li>TypeScript</li><li>JavaScript</li><li>HTML y CSS</li><li>PHP, lo básico</li><li>Python, lo básico</li>
+        <li>Android Studio</li><li>Angular</li><li>Node.js</li><li>WordPress</li><li>MySQL</li><li>SQL Server</li><li>Git, GitHub y GitLab</li><li>Linux</li>
+      </ul>
+    </div>
+    <div class="tools-col">
+      <h3>Lo de dirigir agentes</h3>
+      <ul class="words">
+        <li>Claude Code</li><li>OpenAI Codex</li><li>Cursor</li><li>Google Antigravity</li><li>Skills y plugins para agentes</li><li>CLAUDE.md y AGENTS.md</li><li>Subagentes en worktrees</li><li>Revisores y escépticos</li>
+      </ul>
+    </div>
+  </div>
+  <p class="tools-extra">Hablo español, inglés (B1) e italiano (A2). Tengo los cursos de Cisco CCNA Introduction to Networks e IT Essentials.</p>
+</section>
+
+<section class="contacto" id="contacto" aria-labelledby="h-con">
+  <h2 class="sec-title" id="h-con" data-r="wipe">Hablamos</h2>
+  <p class="sec-intro">Busco las prácticas de DAM del curso 2026/27 en una empresa que haga software, en Málaga o en remoto. Y si sale bien, quedarme.</p>
+  <p class="mail">sergiore2007 <span>arroba</span> gmail.com</p>
+  <div class="btns con-row">
+    <button class="btn" type="button" data-copy="copy-con">Copiar el correo</button>
+    <a class="btn ghost" href="https://github.com/SergioRE2007">GitHub</a>
+    <a class="btn ghost" href="https://www.linkedin.com/in/sergio-rodr%C3%ADguez-espinosa-a052a73a0/">LinkedIn</a>
+    <a class="btn ghost" href="/assets/CV_Sergio_Rodriguez_Espinosa.pdf">CV en PDF</a>
+  </div>
+  <p class="copy-msg" id="copy-con" role="status"></p>
+</section>
+</main>
+
+<footer class="foot">
+  <p>Sergio Rodríguez Espinosa, Málaga, 2026.</p>
+  <p>Hecha con agentes de IA y revisada por mí. Sin cookies ni rastreadores; las fuentes se sirven desde aquí.</p>
+</footer>
+
+<script src="/js/base.js" defer></script>
+<script src="/js/home.js" defer></script>
+</body>
+</html>
